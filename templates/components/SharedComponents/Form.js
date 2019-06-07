@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+//import axios from 'axios' /** External API calls only **/
+//import { connect } from 'react-redux' /** Redux only **/
 import { FormContainer } from './FormStyles'
 import Button from '../DesignComponents/Button'
 
-import { addSmurf, updateSmurf, deleteSmurf } from '../../actions'
+//import {  } from '../../actions' /** Redux only **/
 
 class Form extends Component {
   state = {
     id: '',
-    name: '',
-    age: '',
-    height: ''
+    name: ''
   }
 
   handleInput = e => {
@@ -23,23 +22,24 @@ class Form extends Component {
 
     // gather form data
     let newRecord = {
-      name: this.state.name,
-      age: this.state.age,
-      height: this.state.height
+      name: this.state.name
     }
 
     // send new record to api
     this.props.addData(newRecord)
         console.log(`Form submitted data sent: ${JSON.stringify(newRecord)}`)
-    this.props.history.push('/')
+    //this.props.history.push('/') /** React-Router only **/
 
     // reset form fields
     this.setState({
       id: '',
-      name: '',
-      age: '',
-      height: ''
+      name: ''
     })
+  }
+
+  // pre-populate form with existing data 
+  prePopulateForm = () => {
+    
   }
 
   updateData = e => {
@@ -47,16 +47,14 @@ class Form extends Component {
     e.preventDefault()
     // send updated record to api
     this.props.updateData(this.state)
-    this.props.history.push(`/friends/${this.state.id}`)
+    //this.props.history.push(`/somelist/${this.state.id}`) /** React-Router only **/
 
     console.log(`Form submitted data sent: ${JSON.stringify(this.state)}`)
 
     // reset form fields
     this.setState({
       id: '',
-      name: '',
-      age: '',
-      height: ''
+      name: ''
     })
   }
 
@@ -65,7 +63,7 @@ class Form extends Component {
     e.preventDefault()
     // invoke the deleteFriend method and pass id
     this.props.deleteData(this.state.id)
-    this.props.history.push('/')
+    //this.props.history.push('/') /** React-Router only **/
     // reset form field
     this.setState({ id: '' })
   }
@@ -104,14 +102,6 @@ class Form extends Component {
                 placeholder="Name" onChange={this.handleInput}
                 value={this.state.name}
               />
-              <input name="age" type="number"
-                placeholder="Age" onChange={this.handleInput}
-                value={this.state.age}
-              />
-              <input name="height" type="height"
-                placeholder="height" onChange={this.handleInput}
-                value={this.state.height}
-              />
             </>
           )}
           <Button type="submit" {...this.props}>
@@ -128,8 +118,11 @@ class Form extends Component {
 
 }
 
-export default connect(null, { 
-  addData: addSmurf, 
-  updateData: updateSmurf,
-  deleteData: deleteSmurf
-})(Form)
+export default Form
+
+/** Redux only **/
+// export default connect(null, { 
+//   addData: '', 
+//   updateData: '',
+//   deleteData: ''
+// })(Form)
