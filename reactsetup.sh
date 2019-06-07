@@ -54,9 +54,9 @@ if [ $styled = 'y' ]; then
   echo "Installing styled-components"
   yarn add styled-components styled-normalize
   echo "Copying custom design components"
-  cp $REACT_TOOLS_DIR/templates/components/DesignComponents $PROJECT_DIR/src/components/
+  cp -a $REACT_TOOLS_DIR/templates/components/DesignComponents $PROJECT_DIR/src/components/
   echo "Copying custom shared components"
-  cp $REACT_TOOLS_DIR/templates/components/SharedComponents $PROJECT_DIR/src/components/
+  cp -a $REACT_TOOLS_DIR/templates/components/SharedComponents $PROJECT_DIR/src/components/
 fi
 
 echo "List project directory contents"
