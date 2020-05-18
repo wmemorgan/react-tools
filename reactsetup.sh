@@ -18,7 +18,7 @@ read styled
 
 # Setup project directory and base React boilerplate files
 echo "Setup project files"
-create-react-app $projectname &&
+npx create-react-app $projectname &&
 cd $projectname
 mkdir src/components
 PROJECT_DIR=$(pwd)
